@@ -1252,7 +1252,9 @@
       document.body.classList.remove('snow-active');
       document.body.className = brightness;
       // Add snow-active class for enhanced text shadows in bright mode
+      // Use 'bright' class for snow experience to ensure CSS selectors match
       if (theme === 'snow' && brightness !== 'dim') {
+        document.body.className = 'bright';
         document.body.classList.add('snow-active');
       }
 
