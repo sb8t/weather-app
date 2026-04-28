@@ -52,15 +52,10 @@
     body.bright .search-input {
       background: rgba(255,255,255,0.25);
       border-color: rgba(255,255,255,0.35);
-      color: #0f172a !important;
-    }
-    body.bright .search-input::placeholder {
-      color: #4a5568 !important;
     }
     body.bright .search-btn {
       background: rgba(255,255,255,0.4);
       border-color: rgba(255,255,255,0.4);
-      color: #0f172a !important;
     }
 
     /* ── Bright Mode: Stronger Text Shadows ── */
@@ -89,35 +84,27 @@
       text-shadow: 0 1px 4px rgba(255,255,255,0.3);
       color: #4a5568 !important;
     }
-    body.bright .time-now {
-      text-shadow: 0 1px 3px rgba(255,255,255,0.3);
-      color: #3d4a5a !important;
-    }
-    body.bright .feels {
-      text-shadow: 0 1px 3px rgba(255,255,255,0.3);
-      color: #4a5568 !important;
-    }
-    body.bright .footer,
-    body.bright .search-hint {
-      color: #5a6474 !important;
-      text-shadow: 0 1px 2px rgba(255,255,255,0.25);
-    }
-
-    /* ── Snow Text Variable Overrides ── */
-    /* These change --text-btn and --text-btn-dim for sunny/bright days */
+    /* ── Snow Text Overrides (Only Snow Days) ── */
+    /* These change --text and --text-dim for dark text on snow */
     body.snow-active {
-      --text-btn: #0f172a;
-      --text-btn-dim: #4a5568;
+      --text: #0f172a;
+      --text-dim: #3d4a5a;
     }
-    body.snow-active .feels,
+    body.snow-active .time-now {
+      color: var(--text-dim) !important;
+      text-shadow: 0 1px 3px rgba(255,255,255,0.3);
+    }
+    body.snow-active .feels {
+      color: var(--text) !important;
+      text-shadow: 0 1px 3px rgba(255,255,255,0.3);
+    }
     body.snow-active .footer,
-    body.snow-active .search-hint,
-    body.snow-active p {
-      color: var(--text-btn) !important;
+    body.snow-active .search-hint {
+      color: var(--text) !important;
       text-shadow: 0 1px 2px rgba(255,255,255,0.25);
     }
-    body.bright p {
-      color: #5a6474 !important;
+    body.snow-active p {
+      color: var(--text) !important;
       text-shadow: 0 1px 2px rgba(255,255,255,0.25);
     }
 
