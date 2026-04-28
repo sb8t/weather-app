@@ -37,6 +37,10 @@
       border-color: rgba(255,255,255,0.4);
       box-shadow: 0 8px 32px rgba(77, 175, 255, 0.3), 0 2px 8px rgba(255,255,255,0.1);
     }
+    /* ── Bright + Snow: additional contrast ── */
+    body.bright .main-card {
+      background: rgba(240, 248, 255, 0.28);
+    }
     body.bright .main-card .temp-big { color: #ffffff; }
     body.bright .detail-card {
       background: rgba(255,255,255,0.2);
@@ -591,9 +595,14 @@
       height: 6px;
       border-radius: 50%;
       background: white;
-      box-shadow: 0 0 6px rgba(255, 255, 255, 0.9), 0 0 12px rgba(200, 220, 255, 0.3);
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.9), 0 0 12px rgba(200, 220, 255, 0.3), 0 0 20px rgba(180, 200, 230, 0.2);
       top: -10px;
       animation: snow-fall 8s linear infinite;
+    }
+    /* ── Bright mode: darker snowflakes for contrast ── */
+    body.bright .snow-flake {
+      background: #E8F0FE;
+      box-shadow: 0 0 6px rgba(255, 255, 255, 0.9), 0 0 12px rgba(180, 200, 240, 0.4), 0 0 20px rgba(160, 180, 220, 0.25);
     }
     .snow-flake.s1 { left: 10%; animation-duration: 9s; animation-delay: -3s; }
     .snow-flake.s2 { left: 15%; animation-duration: 10s; animation-delay: -2s; width: 4px; height: 4px; }
@@ -735,9 +744,13 @@
       left: 0;
       width: 100%;
       height: 100%;
-      background: linear-gradient(180deg, rgba(200, 210, 220, 0.15) 0%, rgba(180, 190, 210, 0.1) 100%);
+      background: linear-gradient(180deg, rgba(160, 175, 200, 0.25) 0%, rgba(140, 155, 185, 0.18) 100%);
       pointer-events: none;
       z-index: 1;
+    }
+    /* ── Snow + Bright Theme: Darken overlay for contrast ── */
+    body.bright .weather-bg-animation.snow::after {
+      background: linear-gradient(180deg, rgba(140, 155, 185, 0.35) 0%, rgba(120, 135, 170, 0.25) 100%);
     }
 
     /* ── Reduced Motion Support ── */
