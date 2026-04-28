@@ -578,6 +578,52 @@
       }
     }
 
+    /* ── Snow Flakes ── */
+    .bg-snow-layer {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+    .snow-flake {
+      position: absolute;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: white;
+      box-shadow: 0 0 4px rgba(255, 255, 255, 0.8);
+      top: -10px;
+      animation: snow-fall 8s linear infinite;
+    }
+    .snow-flake.s1 { left: 10%; animation-duration: 9s; animation-delay: -3s; }
+    .snow-flake.s2 { left: 15%; animation-duration: 10s; animation-delay: -2s; width: 4px; height: 4px; }
+    .snow-flake.s3 { left: 25%; animation-duration: 7s; animation-delay: -5s; }
+    .snow-flake.s4 { left: 35%; animation-duration: 9s; animation-delay: -1s; width: 5px; height: 5px; }
+    .snow-flake.s5 { left: 45%; animation-duration: 11s; animation-delay: -4s; }
+    .snow-flake.s6 { left: 55%; animation-duration: 8.5s; animation-delay: -3s; width: 4px; height: 4px; }
+    .snow-flake.s7 { left: 65%; animation-duration: 10.5s; animation-delay: -7s; }
+    .snow-flake.s8 { left: 75%; animation-duration: 7.5s; animation-delay: -6s; width: 5px; height: 5px; }
+    .snow-flake.s9 { left: 85%; animation-duration: 9.5s; animation-delay: -2.5s; }
+    .snow-flake.s10 { left: 5%; animation-duration: 8.2s; animation-delay: -8s; width: 4px; height: 4px; }
+
+    @keyframes snow-fall {
+      0% {
+        top: -10px;
+        transform: translateX(0) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        top: 100%;
+        transform: translateX(-30px) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
     /* ── Night Stars ── */
     .bg-night-layer {
       position: absolute;
@@ -644,6 +690,10 @@
       display: block;
     }
     .weather-bg-animation.rain .bg-rain-layer { display: block; }
+    .weather-bg-animation.snow {
+      display: block;
+    }
+    .weather-bg-animation.snow .bg-snow-layer { display: block; }
     .weather-bg-animation.night {
       display: block;
     }
@@ -654,6 +704,7 @@
     .bg-sun-particle,
     .bg-cloud-layer,
     .bg-rain-layer,
+    .bg-snow-layer,
     .bg-night-layer {
       display: block;
       opacity: 0;
@@ -664,6 +715,7 @@
     .weather-bg-animation.sun .bg-sun-particle,
     .weather-bg-animation.clouds .bg-cloud-layer,
     .weather-bg-animation.rain .bg-rain-layer,
+    .weather-bg-animation.snow .bg-snow-layer,
     .weather-bg-animation.night .bg-night-layer {
       opacity: 1;
     }
@@ -678,6 +730,7 @@
       .weather-bg-animation .bg-sun-particle,
       .weather-bg-animation .bg-cloud-layer .cloud-cloud,
       .weather-bg-animation .bg-rain-layer .rain-drop,
+      .weather-bg-animation .bg-snow-layer .snow-flake,
       .weather-bg-animation .bg-night-layer .star {
         animation: none !important;
         opacity: 0.5 !important;
@@ -721,6 +774,20 @@
       <span class="rain-drop r8"></span>
       <span class="rain-drop r9"></span>
       <span class="rain-drop r10"></span>
+    </div>
+
+    <!-- Snow flakes -->
+    <div class="bg-snow-layer">
+      <span class="snow-flake s1"></span>
+      <span class="snow-flake s2"></span>
+      <span class="snow-flake s3"></span>
+      <span class="snow-flake s4"></span>
+      <span class="snow-flake s5"></span>
+      <span class="snow-flake s6"></span>
+      <span class="snow-flake s7"></span>
+      <span class="snow-flake s8"></span>
+      <span class="snow-flake s9"></span>
+      <span class="snow-flake s10"></span>
     </div>
 
     <!-- Night stars -->
@@ -847,9 +914,9 @@
       65: { desc: 'Heavy Rain',     theme: 'rain',   brightness: 'dim' },
       66: { desc: 'Light Freezing R.', theme: 'rain', brightness: 'dim' },
       67: { desc: 'Heavy Freezing R.', theme: 'rain', brightness: 'dim' },
-      71: { desc: 'Slight Snow',    theme: 'rain',   brightness: 'mid' },
-      73: { desc: 'Moderate Snow',  theme: 'rain',   brightness: 'mid' },
-      75: { desc: 'Heavy Snow',     theme: 'rain',   brightness: 'dim' },
+      71: { desc: 'Slight Snow',    theme: 'snow',   brightness: 'mid' },
+      73: { desc: 'Moderate Snow',  theme: 'snow',   brightness: 'mid' },
+      75: { desc: 'Heavy Snow',     theme: 'snow',   brightness: 'dim' },
       77: { desc: 'Snow Grains',    theme: 'snow',   brightness: 'mid' },
       80: { desc: 'Slight Showers', theme: 'rain',   brightness: 'mid' },
       81: { desc: 'Moderate Showers', theme: 'rain', brightness: 'dim' },
@@ -919,6 +986,17 @@
         <rect x="1" y="1" width="1" height="1" fill="#60A5FA"/>
         <rect x="1" y="2" width="1" height="1" fill="#60A5FA"/>
         <rect x="1" y="3" width="1" height="1" fill="#60A5FA"/>
+      </svg>`,
+
+      snow: `<svg viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg">
+        <rect x="1" y="0" width="1" height="1" fill="#E2E8F0"/>
+        <rect x="0" y="1" width="1" height="1" fill="#E2E8F0"/>
+        <rect x="1" y="1" width="1" height="1" fill="#E2E8F0"/>
+        <rect x="2" y="1" width="1" height="1" fill="#E2E8F0"/>
+        <rect x="1" y="2" width="1" height="1" fill="#E2E8F0"/>
+        <rect x="0" y="3" width="1" height="1" fill="#E2E8F0"/>
+        <rect x="1" y="3" width="1" height="1" fill="#E2E8F0"/>
+        <rect x="2" y="3" width="1" height="1" fill="#E2E8F0"/>
       </svg>`,
 
       wind: `<svg viewBox="0 0 4 4" xmlns="http://www.w3.org/2000/svg">
@@ -1101,8 +1179,8 @@
       // Set background theme
       let theme = info.theme;
       let brightness = info.brightness;
-      if (isNight && theme !== 'rain') theme = 'night';
-      if (isNight && theme !== 'rain') brightness = 'mid';
+      if (isNight && theme !== 'rain' && theme !== 'snow') theme = 'night';
+      if (isNight && theme !== 'rain' && theme !== 'snow') brightness = 'mid';
       const themeVar = `--t-${theme}`;
       document.body.style.background = `var(${themeVar})`;
 
@@ -1110,9 +1188,17 @@
       document.body.className = brightness;
 
       // Render main card
-      document.getElementById('weatherArt').innerHTML = isNight
-        ? PixelArt.moon
-        : (theme === 'rain' ? `${PixelArt.cloud}${PixelArt.rain}` : PixelArt.sun);
+      let weatherIcon;
+      if (isNight) {
+        weatherIcon = PixelArt.moon;
+      } else if (theme === 'snow') {
+        weatherIcon = PixelArt.snow;
+      } else if (theme === 'rain') {
+        weatherIcon = `${PixelArt.cloud}${PixelArt.rain}`;
+      } else {
+        weatherIcon = PixelArt.sun;
+      }
+      document.getElementById('weatherArt').innerHTML = weatherIcon;
       document.querySelector('.weather-art').style.display = 'flex';
       document.querySelector('.weather-art').style.justifyContent = 'center';
       document.querySelector('.weather-art').style.alignItems = 'center';
@@ -1150,7 +1236,9 @@
 
       // Determine weather type
       let weatherType = 'clear';
-      if (info.theme === 'rain' || info.theme === 'snow') {
+      if (info.theme === 'snow') {
+        weatherType = 'snow';
+      } else if (info.theme === 'rain') {
         weatherType = 'rain';
         // Flash lightning for thunderstorms (codes 95, 96, 99)
         if ((code >= 95 && code <= 99) && bgLightning) {
