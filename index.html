@@ -368,9 +368,379 @@
       padding: 4rem 2rem;
       color: #fca5a5;
     }
+
+    /* ── Animated Weather Background ── */
+    .weather-bg-animation {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    /* ── Sun Particles ── */
+    .bg-sun-particle span {
+      position: absolute;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: radial-gradient(circle, #FFE4B5, transparent);
+      box-shadow: 0 0 12px 4px rgba(255, 228, 181, 0.6);
+    }
+    .bg-sun-particle span::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      transform: translate(-50%, -50%);
+      background: radial-gradient(circle, rgba(255, 255, 255, 0.8), transparent);
+      opacity: 0;
+      animation: sparkle 3s ease-in-out infinite;
+    }
+    .bg-sun-particle span:nth-child(1)::after { animation-delay: 0s; }
+
+    .bg-sun-particle {
+      position: absolute;
+    }
+    .bg-sun-particle:nth-child(1) {
+      top: 20%;
+      left: 15%;
+      animation: float-sun 12s ease-in-out infinite;
+    }
+    .bg-sun-particle:nth-child(2) {
+      top: 60%;
+      left: 70%;
+      animation: float-sun 15s ease-in-out infinite reverse;
+      animation-delay: -3s;
+    }
+    .bg-sun-particle:nth-child(3) {
+      top: 35%;
+      left: 45%;
+      animation: float-sun 10s ease-in-out infinite;
+      animation-delay: -6s;
+    }
+    .bg-sun-particle:nth-child(4) {
+      top: 75%;
+      left: 25%;
+      animation: float-sun 14s ease-in-out infinite reverse;
+      animation-delay: -1s;
+    }
+    .bg-sun-particle:nth-child(5) {
+      top: 15%;
+      left: 80%;
+      animation: float-sun 11s ease-in-out infinite;
+      animation-delay: -5s;
+    }
+    .bg-sun-particle:nth-child(6) {
+      top: 50%;
+      left: 40%;
+      animation: float-sun 13s ease-in-out infinite reverse;
+      animation-delay: -8s;
+    }
+
+    @keyframes float-sun {
+      0%, 100% {
+        transform: translateY(0) translateX(0) scale(1);
+        opacity: 0.7;
+      }
+      50% {
+        transform: translateY(-30px) translateX(20px) scale(1.3);
+        opacity: 1;
+      }
+    }
+
+    @keyframes sparkle {
+      0%, 100% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.5); }
+    }
+
+    /* ── Cloud Layers ── */
+    .bg-cloud-layer {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+    .cloud-cloud {
+      position: absolute;
+      width: 200px;
+      height: 60px;
+      background: radial-gradient(ellipse, rgba(200, 200, 220, 0.35), transparent);
+      border-radius: 50%;
+      height: 50px;
+    }
+    .cloud-cloud::before,
+    .cloud-cloud::after {
+      content: '';
+      position: absolute;
+      background: inherit;
+      border-radius: 50%;
+    }
+    .cloud-cloud::before {
+      width: 80px;
+      height: 40px;
+      top: -15px;
+      left: 20px;
+    }
+    .cloud-cloud::after {
+      width: 60px;
+      height: 35px;
+      top: -10px;
+      right: 30px;
+    }
+    .cloud-cloud {
+      top: 15%;
+      left: 10%;
+      animation: drift-cloud 30s ease-in-out infinite;
+    }
+    .cloud-cloud.c2 {
+      top: 55%;
+      left: 65%;
+      width: 150px;
+      animation: drift-cloud 25s ease-in-out infinite reverse;
+      animation-delay: -10s;
+    }
+    .cloud-cloud.c3 {
+      top: 35%;
+      left: 45%;
+      width: 120px;
+      opacity: 0.7;
+      animation: drift-cloud 35s ease-in-out infinite;
+      animation-delay: -20s;
+    }
+
+    @keyframes drift-cloud {
+      0%, 100% {
+        transform: translateX(0) translateY(0) scale(1);
+        opacity: 0.6;
+      }
+      50% {
+        transform: translateX(60px) translateY(-20px) scale(1.1);
+        opacity: 0.8;
+      }
+    }
+
+    /* ── Rain Drops ── */
+    .bg-rain-layer {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+    .rain-drop {
+      position: absolute;
+      width: 2px;
+      height: 25px;
+      background: linear-gradient(to bottom, transparent, rgba(100, 150, 255, 0.6));
+      top: -25px;
+      animation: rain-fall 2.5s linear infinite;
+    }
+    .rain-drop::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: -1px;
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: rgba(100, 150, 255, 0.4);
+    }
+    .rain-drop.r2 { left: 20%; animation-duration: 1.8s; animation-delay: -0.5s; }
+    .rain-drop.r3 { left: 35%; animation-duration: 2.2s; animation-delay: -1.2s; }
+    .rain-drop.r4 { left: 50%; animation-duration: 2.0s; animation-delay: -0.8s; }
+    .rain-drop.r5 { left: 65%; animation-duration: 2.3s; animation-delay: -1.5s; }
+    .rain-drop.r6 { left: 80%; animation-duration: 1.9s; animation-delay: -0.3s; }
+    .rain-drop.r7 { left: 10%; animation-duration: 2.1s; animation-delay: -1.8s; }
+    .rain-drop.r8 { left: 30%; animation-duration: 2.4s; animation-delay: -2.1s; }
+    .rain-drop.r9 { left: 45%; animation-duration: 1.7s; animation-delay: -0.6s; }
+    .rain-drop.r10 { left: 60%; animation-duration: 2.6s; animation-delay: -1.9s; }
+
+    @keyframes rain-fall {
+      0% {
+        top: -25px;
+        transform: translateX(0);
+        opacity: 0;
+      }
+      10% {
+        opacity: 1;
+      }
+      90% {
+        opacity: 1;
+      }
+      100% {
+        top: 100%;
+        transform: translateX(15px);
+        opacity: 0;
+      }
+    }
+
+    /* ── Night Stars ── */
+    .bg-night-layer {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+    }
+    .star {
+      position: absolute;
+      width: 3px;
+      height: 3px;
+      background: white;
+      border-radius: 50%;
+      box-shadow: 0 0 4px white;
+      animation: twinkle 4s ease-in-out infinite;
+    }
+    .star.st2 { left: 15%; top: 20%; animation-delay: -1s; animation-duration: 3.5s; width: 2px; height: 2px; }
+    .star.st3 { left: 30%; top: 40%; animation-delay: -2s; animation-duration: 5s; }
+    .star.st4 { left: 50%; top: 15%; animation-delay: -0.5s; animation-duration: 4.5s; width: 2px; height: 2px; }
+    .star.st5 { left: 70%; top: 25%; animation-delay: -3s; animation-duration: 3s; }
+    .star.st6 { left: 85%; top: 35%; animation-delay: -1.5s; animation-duration: 5.5s; width: 2px; height: 2px; }
+    .star.st7 { left: 25%; top: 60%; animation-delay: -2.5s; animation-duration: 4s; }
+    .star.st8 { left: 45%; top: 55%; animation-delay: -0.8s; animation-duration: 6s; width: 2px; height: 2px; }
+    .star.st9 { left: 65%; top: 45%; animation-delay: -1.2s; animation-duration: 3.8s; }
+    .star.st10 { left: 40%; top: 75%; animation-delay: -3.5s; animation-duration: 4.2s; width: 2px; height: 2px; }
+
+    @keyframes twinkle {
+      0%, 100% {
+        opacity: 0.3;
+        transform: scale(1);
+      }
+      50% {
+        opacity: 1;
+        transform: scale(1.5);
+      }
+    }
+
+    /* ── Lightning Flash ── */
+    .bg-lightning {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(ellipse at center, rgba(255, 255, 255, 0.4), transparent);
+      opacity: 0;
+      transition: opacity 0.1s;
+    }
+    .bg-lightning.flash {
+      opacity: 1;
+    }
+
+    /* ── Animation Visibility Based on Weather ── */
+    .weather-bg-animation {
+      display: none;
+    }
+    .weather-bg-animation.sun {
+      display: block;
+      animation-name: sun-bg-mode;
+    }
+    .weather-bg-animation.sun .bg-sun-particle { display: block; }
+    .weather-bg-animation.clouds {
+      display: block;
+    }
+    .weather-bg-animation.clouds .bg-cloud-layer { display: block; }
+    .weather-bg-animation.rain {
+      display: block;
+    }
+    .weather-bg-animation.rain .bg-rain-layer { display: block; }
+    .weather-bg-animation.night {
+      display: block;
+    }
+    .weather-bg-animation.night .bg-night-layer { display: block; }
+    .weather-bg-animation.night .bg-cloud-layer { display: block; opacity: 0.4; }
+
+    /* ── Show All Layers Initially (hidden via opacity) ── */
+    .bg-sun-particle,
+    .bg-cloud-layer,
+    .bg-rain-layer,
+    .bg-night-layer {
+      display: block;
+      opacity: 0;
+      transition: opacity 2s ease;
+    }
+
+    /* ── Active Layer Visibility ── */
+    .weather-bg-animation.sun .bg-sun-particle,
+    .weather-bg-animation.clouds .bg-cloud-layer,
+    .weather-bg-animation.rain .bg-rain-layer,
+    .weather-bg-animation.night .bg-night-layer {
+      opacity: 1;
+    }
+
+    /* ── Night Cloud Overlay Effect ── */
+    .weather-bg-animation.night .bg-cloud-layer {
+      opacity: 0.3;
+    }
+
+    /* ── Reduced Motion Support ── */
+    @media (prefers-reduced-motion: reduce) {
+      .weather-bg-animation .bg-sun-particle,
+      .weather-bg-animation .bg-cloud-layer .cloud-cloud,
+      .weather-bg-animation .bg-rain-layer .rain-drop,
+      .weather-bg-animation .bg-night-layer .star {
+        animation: none !important;
+        opacity: 0.5 !important;
+      }
+      .weather-bg-animation .bg-sun-particle span,
+      .weather-bg-animation .bg-cloud-layer .cloud-cloud,
+      .weather-bg-animation .bg-rain-layer .rain-drop,
+      .weather-bg-animation .bg-night-layer .star {
+        transform: none !important;
+      }
+    }
   </style>
 </head>
 <body>
+  <!-- Animated Weather Background -->
+  <div class="weather-bg-animation" id="weatherBgAnim">
+    <!-- Sun particles -->
+    <div class="bg-sun-particle"><span></span></div>
+    <div class="bg-sun-particle s2"><span></span></div>
+    <div class="bg-sun-particle s3"><span></span></div>
+    <div class="bg-sun-particle s4"><span></span></div>
+    <div class="bg-sun-particle s5"><span></span></div>
+    <div class="bg-sun-particle s6"><span></span></div>
+
+    <!-- Cloud layers -->
+    <div class="bg-cloud-layer">
+      <span class="cloud-cloud"></span>
+      <span class="cloud-cloud c2"></span>
+      <span class="cloud-cloud c3"></span>
+    </div>
+
+    <!-- Rain drops -->
+    <div class="bg-rain-layer">
+      <span class="rain-drop"></span>
+      <span class="rain-drop r2"></span>
+      <span class="rain-drop r3"></span>
+      <span class="rain-drop r4"></span>
+      <span class="rain-drop r5"></span>
+      <span class="rain-drop r6"></span>
+      <span class="rain-drop r7"></span>
+      <span class="rain-drop r8"></span>
+      <span class="rain-drop r9"></span>
+      <span class="rain-drop r10"></span>
+    </div>
+
+    <!-- Night stars -->
+    <div class="bg-night-layer">
+      <span class="star"></span>
+      <span class="star st2"></span>
+      <span class="star st3"></span>
+      <span class="star st4"></span>
+      <span class="star st5"></span>
+      <span class="star st6"></span>
+      <span class="star st7"></span>
+      <span class="star st8"></span>
+      <span class="star st9"></span>
+      <span class="star st10"></span>
+    </div>
+
+    <!-- Lightning flash overlay -->
+    <div class="bg-lightning" id="bgLightning"></div>
+  </div>
+
   <div class="container">
     <!-- Header -->
     <div class="header">
@@ -707,11 +1077,12 @@
     }
 
     // ── Render Weather ──
+    let info, code, isNight; // accessible by updateBackgroundAnimation
     function renderWeather(data) {
       const c = data.current;
-      const code = c.weather_code;
-      const info = getWeatherInfo(code);
-      const isNight = new Date().getHours() < 6 || new Date().getHours() >= 19;
+      code = c.weather_code;
+      info = getWeatherInfo(code);
+      isNight = new Date().getHours() < 6 || new Date().getHours() >= 19;
       const isSunny = info.brightness === 'bright';
 
       // Set timezone for computer time
@@ -757,6 +1128,50 @@
       document.getElementById('windVal').textContent = `${Math.round(c.wind_speed_10m)} km/h`;
       document.getElementById('uvIcon').innerHTML = PixelArt.uv;
       document.getElementById('uvVal').textContent = c.uv_index != null ? Math.round(c.uv_index) : '—';
+
+      // Update animated background
+      updateBackgroundAnimation();
+    }
+
+    // ── Animated Background ──
+    let lightningInterval = null;
+
+    function updateBackgroundAnimation() {
+      const bgAnim = document.getElementById('weatherBgAnim');
+      const bgLightning = document.getElementById('bgLightning');
+      if (!bgAnim) return;
+
+      // Clear lightning interval
+      if (lightningInterval) {
+        clearInterval(lightningInterval);
+        lightningInterval = null;
+        if (bgLightning) bgLightning.classList.remove('flash');
+      }
+
+      // Determine weather type
+      let weatherType = 'clear';
+      if (info.theme === 'rain' || info.theme === 'snow') {
+        weatherType = 'rain';
+        // Flash lightning for thunderstorms (codes 95, 96, 99)
+        if ((code >= 95 && code <= 99) && bgLightning) {
+          lightningInterval = setInterval(() => {
+            if (Math.random() < 0.3) {
+              bgLightning.classList.add('flash');
+              setTimeout(() => bgLightning.classList.remove('flash'), 150);
+            }
+          }, 4000);
+        }
+      } else if (info.theme === 'cloudy') {
+        weatherType = 'clouds';
+      } else if (isNight) {
+        weatherType = 'night';
+      }
+
+      // Remove old classes
+      bgAnim.className = 'weather-bg-animation';
+
+      // Add new class
+      bgAnim.classList.add(weatherType);
     }
 
     // ── Init ──
