@@ -25,6 +25,8 @@
       --border-dark: rgba(255,255,255,0.1);
       --text: #ffffff;
       --text-dim: rgba(255,255,255,0.75);
+      --text-btn: #ffffff;
+      --text-btn-dim: rgba(255,255,255,0.75);
     }
 
     /* ── Brightness Theme Classes ── */
@@ -101,15 +103,17 @@
       text-shadow: 0 1px 2px rgba(255,255,255,0.25);
     }
 
-    /* ── Snow Text Overrides: Dark text for elements using --text variables ── */
-    body.snow-active .feels {
-      color: #0f172a !important;
-      text-shadow: 0 1px 3px rgba(255,255,255,0.3);
+    /* ── Snow Text Variable Overrides ── */
+    /* These change --text-btn and --text-btn-dim for sunny/bright days */
+    body.snow-active {
+      --text-btn: #0f172a;
+      --text-btn-dim: #4a5568;
     }
+    body.snow-active .feels,
     body.snow-active .footer,
     body.snow-active .search-hint,
     body.snow-active p {
-      color: #0f172a !important;
+      color: var(--text-btn) !important;
       text-shadow: 0 1px 2px rgba(255,255,255,0.25);
     }
     body.bright .search-error {
@@ -206,8 +210,8 @@
       gap: 0.5rem;
     }
     body.snow-active .search-input {
-      color: #0f172a !important;
-      text-shadow: 0 1px 3px rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.15);
+      border-color: rgba(255,255,255,0.35);
     }
     body.snow-active .search-input::placeholder {
       color: #6b7280 !important;
@@ -219,7 +223,7 @@
       border-radius: 0.75rem;
       padding: 0.75rem 1rem;
       font-size: 1rem;
-      color: var(--text);
+      color: var(--text-btn);
       font-family: inherit;
       outline: none;
       transition: border-color 0.2s, background 0.2s;
@@ -232,8 +236,10 @@
       background: rgba(255,255,255,0.12);
     }
     body.snow-active .search-btn {
-      color: #0f172a !important;
+      color: var(--text-btn) !important;
       text-shadow: 0 1px 3px rgba(255,255,255,0.3);
+      background: rgba(255,255,255,0.25);
+      border-color: rgba(255,255,255,0.35);
     }
     .search-btn {
       background: rgba(255,255,255,0.15);
@@ -242,7 +248,7 @@
       padding: 0.75rem 1.25rem;
       font-size: 1rem;
       font-weight: 600;
-      color: var(--text);
+      color: var(--text-btn);
       cursor: pointer;
       transition: background 0.2s, transform 0.1s;
       white-space: nowrap;
@@ -254,11 +260,11 @@
       transform: scale(0.97);
     }
     body.snow-active .search-hint {
-      color: #5a6474 !important;
+      color: var(--text-btn-dim) !important;
       text-shadow: 0 1px 2px rgba(255,255,255,0.25);
     }
     .search-hint {
-      color: var(--text-dim);
+      color: var(--text-btn-dim);
       font-size: 0.8rem;
       margin-top: 0.5rem;
       text-align: center;
@@ -1289,8 +1295,9 @@
       document.body.classList.remove('snow-active');
       document.body.className = brightness;
       // Add snow-active class for enhanced text shadows in bright mode
-      // Use 'bright' class for snow experience to ensure CSS selectors match
-      if (theme === 'snow' && brightness !== 'dim') {
+      // Use 'bright' class for snow/cloud experience to ensure CSS selectors match
+      // Sunny days (code 0,1) keep white text, cloudy/snow get dark text
+      if ((theme === 'snow' || theme === 'cloudy') && brightness !== 'dim') {
         document.body.className = 'bright';
         document.body.classList.add('snow-active');
       }
